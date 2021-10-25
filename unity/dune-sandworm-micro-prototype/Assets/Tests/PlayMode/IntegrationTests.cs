@@ -48,6 +48,7 @@ namespace Tests.PlayMode
 
     public class SandwormHeadPrefab
     {
+        private const string PrefabLocation = "Prefabs/Sandworm Head";
         private class EdibleObjectTestHarness: MonoBehaviour, IAmEdible
         {
             public bool canBeEaten = true;
@@ -60,21 +61,32 @@ namespace Tests.PlayMode
             } 
         }
 
-        private const string PrefabLocation = "Prefabs/Sandworm Head";
-
         [UnityTest]
-        public IEnumerator CanEatEdibleObjects()
+        public IEnumerator CanEatEdibleObjectsViaCollision()
         {
             var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
             var testEdibleObject = new GameObject();
-            var head = sut.GetComponent<SandwormHead>();
+            testEdibleObject.AddComponent<BoxCollider>();
             var testHarness = testEdibleObject.AddComponent<EdibleObjectTestHarness>();
-            yield return null;
-            
-            head.Eat(testEdibleObject);
+            testEdibleObject.transform.position = sut.transform.position;
+
+            yield return new WaitForFixedUpdate(); // Allow collision to be detected
 
             Assert.IsFalse(testHarness.canBeEaten);
             Assert.IsTrue(testHarness.hasBeenEaten);
+        }
+    }
+
+    public class SandwormPrefab
+    {
+        private const string PrefabLocation = "Prefabs/Sandworm";
+        [UnityTest]
+        public IEnumerator Exists()
+        {
+            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            yield return null;
+
+            Assert.NotNull(sut);
         }
     }
 }

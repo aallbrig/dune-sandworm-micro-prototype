@@ -38,12 +38,14 @@ namespace Tests.PlayMode
 
         public static string[] ExpectedGameElements = {
             "Desert Sands",
-            "Ground"
+            "Ground",
+            "Sandworm (Player)"
         };
 
         [UnityTest]
-        public IEnumerator TheLevelFeaturesTheseElements([ValueSource(nameof(ExpectedGameElements))]
-            string gameObjectName)
+        public IEnumerator TheLevelFeaturesTheseElements(
+            [ValueSource(nameof(ExpectedGameElements))] string gameObjectName
+        )
         {
             yield return LoadTargetScene(TargetScene);
 

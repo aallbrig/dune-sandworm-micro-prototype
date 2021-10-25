@@ -39,9 +39,7 @@ namespace Behaviors
             }
         }
 
-        private void OnCollisionStay(Collision other)
-        {
-            Eat(other.gameObject);
-        }
+        private void OnCollisionEnter(Collision other) => Eat(other.gameObject);
+        private void OnCollisionStay(Collision other) => Eat(other.gameObject);
     }
 }
