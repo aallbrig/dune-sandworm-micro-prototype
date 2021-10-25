@@ -28,15 +28,20 @@ namespace Behaviors
         public static event Action<SandwormMeal> SandwormHasEaten;
 
         // Sandworm eats when its mouth collides with things
-        private void OnCollisionEnter(Collision other)
+        public void Eat(GameObject maybeEdibleObject)
         {
-            var edibleObject = other.gameObject.GetComponent<IAmEdible>();
-            if (edibleObject != null)
+            var edibleObject = maybeEdibleObject.GetComponent<IAmEdible>();
+            if (edibleObject != null && edibleObject.CanBeEaten())
             {
                 edibleObject.BeEaten();
 
-                SandwormHasEaten?.Invoke(SandwormMeal.Of(gameObject, other.gameObject));
+                SandwormHasEaten?.Invoke(SandwormMeal.Of(gameObject, maybeEdibleObject));
             }
+        }
+
+        private void OnCollisionStay(Collision other)
+        {
+            Eat(other.gameObject);
         }
     }
 }

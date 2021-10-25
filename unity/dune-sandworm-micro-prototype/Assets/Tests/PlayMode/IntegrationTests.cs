@@ -3,6 +3,7 @@ using Behaviors;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using Object = UnityEngine.Object;
 
 namespace Tests.PlayMode
 {
@@ -47,15 +48,33 @@ namespace Tests.PlayMode
 
     public class SandwormHeadPrefab
     {
+        private class EdibleObjectTestHarness: MonoBehaviour, IAmEdible
+        {
+            public bool canBeEaten = true;
+            public bool hasBeenEaten = false;
+            public bool CanBeEaten() => canBeEaten;
+            public void BeEaten()
+            {
+                canBeEaten = false;
+                hasBeenEaten = true;
+            } 
+        }
+
         private const string PrefabLocation = "Prefabs/Sandworm Head";
 
         [UnityTest]
-        public IEnumerator Exists()
+        public IEnumerator CanEatEdibleObjects()
         {
             var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            var testEdibleObject = new GameObject();
+            var head = sut.GetComponent<SandwormHead>();
+            var testHarness = testEdibleObject.AddComponent<EdibleObjectTestHarness>();
             yield return null;
+            
+            head.Eat(testEdibleObject);
 
-            Assert.NotNull(sut);
+            Assert.IsFalse(testHarness.canBeEaten);
+            Assert.IsTrue(testHarness.hasBeenEaten);
         }
     }
 }

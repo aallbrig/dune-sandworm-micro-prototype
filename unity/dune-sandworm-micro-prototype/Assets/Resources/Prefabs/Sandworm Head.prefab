@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314198459432005856}
   - component: {fileID: 314198459432005857}
+  - component: {fileID: 8534824738152336316}
   m_Layer: 0
   m_Name: Sandworm Head
   m_TagString: Untagged
@@ -45,6 +46,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8534824738152336316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314198459432005859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92e2445e96f4d8e819e99f9805565ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314198459960591887
 GameObject:
   m_ObjectHideFlags: 0
