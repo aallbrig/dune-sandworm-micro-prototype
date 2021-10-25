@@ -19,6 +19,7 @@ namespace Behaviors
 
     public interface IAmEdible
     {
+        bool CanBeEaten();
         void BeEaten();
     }
 
