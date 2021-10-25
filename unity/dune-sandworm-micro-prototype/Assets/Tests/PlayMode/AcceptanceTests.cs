@@ -9,7 +9,7 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class AcceptanceTests
+    public class LevelOne
     {
         private const string TargetScene = "Level1";
 
@@ -27,6 +27,7 @@ namespace Tests.PlayMode
 
             return foundGameObjects;
         }
+        private GameObject FindGameObjectByName(string name) => GameObject.Find(name);
 
         private IEnumerator LoadTargetScene(string targetSceneName)
         {
@@ -35,10 +36,26 @@ namespace Tests.PlayMode
             while (sceneAsync.isDone == false) yield return null;
         }
 
+        public static string[] ExpectedGameElements = {
+            "Desert Sands",
+            "Ground"
+        };
+
+        [UnityTest]
+        public IEnumerator TheLevelFeaturesTheseElements([ValueSource(nameof(ExpectedGameElements))]
+            string gameObjectName)
+        {
+            yield return LoadTargetScene(TargetScene);
+
+            var sut = FindGameObjectByName(gameObjectName);
+
+            Assert.NotNull(sut);
+        }
+
         // [UnityTest]
         private IEnumerator ASandwormIsOnScreen()
         {
-            yield return LoadTargetScene("Level1");
+            yield return LoadTargetScene(TargetScene);
             var scene = SceneManager.GetActiveScene();
 
             var sut = FindGameObjectInRoot(scene, (gameObject => gameObject.name == "Sandworm (Player)"))[0];
@@ -49,7 +66,7 @@ namespace Tests.PlayMode
         // [UnityTest]
         private IEnumerator AnEdibleObjectIsOnScreen()
         {
-            yield return LoadTargetScene("Level1");
+            yield return LoadTargetScene(TargetScene);
             var scene = SceneManager.GetActiveScene();
 
             var sut = FindGameObjectInRoot(scene, (gameObject => gameObject.GetComponent<IAmEdible>() != null))[0];
@@ -60,7 +77,7 @@ namespace Tests.PlayMode
         // [UnityTest]
         private IEnumerator TheSandwormCanEatEdibleObjects()
         {
-            yield return LoadTargetScene("Level1");
+            yield return LoadTargetScene(TargetScene);
             var scene = SceneManager.GetActiveScene();
             var sandworm = FindGameObjectInRoot(scene, (gameObject => gameObject.name == "Sandworm (Player)"))[0];
             var edibleObject = FindGameObjectInRoot(scene, (gameObject => gameObject.GetComponent<IAmEdible>() != null))[0];
