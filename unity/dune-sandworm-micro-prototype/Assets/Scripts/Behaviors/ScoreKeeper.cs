@@ -31,12 +31,12 @@ namespace Behaviors
             SandwormHead.SandwormHasEaten += CalculateNewScore;
         }
 
-        private void CalculateNewScore(SandwormHead _, GameObject edibleObject)
+        private void CalculateNewScore(SandwormMeal meal)
         {
-            var haveAScoreComponent = edibleObject.GetComponent<IHaveAScore>();
-            if (haveAScoreComponent == null) return;
+            var scoreableObject = meal.EdibleObject.GetComponent<IHaveAScore>();
+            if (scoreableObject == null) return;
 
-            var additionalPoints = haveAScoreComponent.Score;
+            var additionalPoints = scoreableObject.Score;
             _score = Score.Of(_score.Points + additionalPoints.Points);
 
             NewScoreWasCalculated?.Invoke(_score);
