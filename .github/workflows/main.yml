@@ -104,13 +104,13 @@ jobs:
           buildName: ${{ matrix.targetPlatform }}
           allowDirtyBuild: true
 
-      - name: Remove mobile browser warning
-        run: scripts/commands/remove-mobile-warning.sh
-        shell: bash
+      # - name: Remove mobile browser warning
+        # run: scripts/commands/remove-mobile-warning.sh
+        # shell: bash
 
-      - name: Read the value of the build output
-        run: scripts/queries/detect-expected-values.sh
-        shell: bash
+      # - name: Read the value of the build output
+        # run: scripts/queries/detect-expected-values.sh
+        # shell: bash
 
       - uses: actions/upload-artifact@v2
         with:
