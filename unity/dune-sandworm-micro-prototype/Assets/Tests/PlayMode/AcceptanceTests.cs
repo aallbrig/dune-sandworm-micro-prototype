@@ -35,7 +35,7 @@ namespace Tests.PlayMode
             while (sceneAsync.isDone == false) yield return null;
         }
 
-        [UnityTest]
+        // [UnityTest]
         private IEnumerator ASandwormIsOnScreen()
         {
             yield return LoadTargetScene("Level1");
@@ -46,7 +46,7 @@ namespace Tests.PlayMode
             Assert.NotNull(sut);
         }
 
-        [UnityTest]
+        // [UnityTest]
         private IEnumerator AnEdibleObjectIsOnScreen()
         {
             yield return LoadTargetScene("Level1");
@@ -57,7 +57,7 @@ namespace Tests.PlayMode
             Assert.NotNull(sut);
         }
 
-        [UnityTest]
+        // [UnityTest]
         private IEnumerator TheSandwormCanEatEdibleObjects()
         {
             yield return LoadTargetScene("Level1");
