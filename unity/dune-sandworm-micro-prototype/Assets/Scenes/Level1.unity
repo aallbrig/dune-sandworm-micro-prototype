@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423609525}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 504190336}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: models
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 560185657}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Desert Sands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 683537930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: models
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 423609524}
     - target: {fileID: 8516739596080582575, guid: 57a14028b9cad428893f643a2007a1b9, type: 3}
       propertyPath: optionalOffset.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a14028b9cad428893f643a2007a1b9, type: 3}
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 916984673}
   - component: {fileID: 916984672}
   - component: {fileID: 916984671}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 1577793092}
   - component: {fileID: 1577793091}
   - component: {fileID: 1577793090}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
