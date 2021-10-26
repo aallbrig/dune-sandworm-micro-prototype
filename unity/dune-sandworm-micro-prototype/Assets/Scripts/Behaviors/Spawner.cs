@@ -17,7 +17,7 @@ namespace Behaviors
         Offset
     }
 
-    public class Spawner: MonoBehaviour
+    public class Spawner : MonoBehaviour
     {
         private readonly List<ICanSpawn> _spawns = new List<ICanSpawn>();
 

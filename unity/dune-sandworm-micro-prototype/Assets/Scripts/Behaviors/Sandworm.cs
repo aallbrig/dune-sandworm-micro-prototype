@@ -13,24 +13,18 @@ namespace Behaviors
 
         public Vector3 DirectionOfTravel => directionOfTravel;
 
+        private void Start() => GenerateBody();
+
         public void UpdateDirectionOfTravel(Vector3 newVector) => directionOfTravel = newVector;
 
         [ContextMenu("Generate Body Segments")]
-        public void GenerateBody()
-        {
+        public void GenerateBody() =>
             // DeleteAllBodySegments();
             SpawnBodySegments();
-        }
-
-        private void Start()
-        {
-            GenerateBody();
-        }
         private void DeleteAllBodySegments()
         {
-            foreach (Transform child in bodyParent) {
+            foreach (Transform child in bodyParent)
                 DestroyImmediate(child.gameObject);
-            }
         }
 
         private void SpawnBodySegments()

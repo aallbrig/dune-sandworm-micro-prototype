@@ -6,13 +6,12 @@ namespace Behaviors
     [Serializable]
     public class Score
     {
-        public static Score Of(float points) => new Score(points);
+
+        private Score(float points) => Points = points;
+
         public float Points { get; private set; }
 
-        private Score(float points)
-        {
-            Points = points;
-        }
+        public static Score Of(float points) => new Score(points);
     }
 
     public interface IHaveAScore
@@ -22,14 +21,12 @@ namespace Behaviors
 
     public class ScoreKeeper : MonoBehaviour
     {
-        public static event Action<Score> NewScoreWasCalculated;
 
         private Score _score = Score.Of(0);
 
-        private void OnEnable()
-        {
-            SandwormHead.SandwormHasEaten += CalculateNewScore;
-        }
+        private void OnEnable() => SandwormHead.SandwormHasEaten += CalculateNewScore;
+
+        public static event Action<Score> NewScoreWasCalculated;
 
         private void CalculateNewScore(SandwormMeal meal)
         {

@@ -12,6 +12,8 @@ namespace Behaviors
         [SerializeField] private string name = "";
         [SerializeField] private Vector3 optionalOffset = Vector3.zero;
 
+        public void Spawn() => SpawnPrefabs();
+
         [ContextMenu("Spawn")]
         private void SpawnPrefabs()
         {
@@ -39,7 +41,5 @@ namespace Behaviors
                 instantiated++;
             }
         }
-
-        public void Spawn() => SpawnPrefabs();
     }
 }

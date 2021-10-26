@@ -9,10 +9,7 @@ namespace Behaviors
         [SerializeField] private string pre = "Points: ";
         [SerializeField] private string post = "";
 
-        private void OnEnable()
-        {
-            ScoreKeeper.NewScoreWasCalculated += Render;
-        }
+        private void OnEnable() => ScoreKeeper.NewScoreWasCalculated += Render;
 
         public void Render(Score score) => text.text = $"{pre}{score.Points.ToString()}{post}";
     }
