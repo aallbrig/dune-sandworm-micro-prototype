@@ -8,7 +8,7 @@ namespace Behaviors
         void Move(Vector3 directionOfTravel);
     }
 
-    public class Sandworm : MonoBehaviour, IMoveSandworms
+    public class Sandworm : MonoBehaviour
     {
         public Vector3 TravelDirection => _sandwormMover.TravelDirection;
         public GameObject sandwormHead;
@@ -23,7 +23,7 @@ namespace Behaviors
 
         private void Start()
         {
-            _sandwormMover = sandwormHead.GetComponent<IMoveSandworms>();
+            _sandwormMover = GetComponent<IMoveSandworms>();
             GenerateBody();
         }
 
@@ -37,7 +37,10 @@ namespace Behaviors
         private void DeleteAllBodySegments()
         {
             foreach (Transform child in bodyParent)
+            {
+                Destroy(child.gameObject);
                 DestroyImmediate(child.gameObject);
+            }
         }
 
         private void SpawnBodySegments()
@@ -59,5 +62,26 @@ namespace Behaviors
         }
 
         public void Move(Vector3 directionOfTravel) => _sandwormMover.Move(directionOfTravel);
+
+        private void OnCollisionEnter(Collision other)
+        {
+            var otherGameObjectLayer = other.gameObject.layer;
+            if (otherGameObjectLayer == layerMask || gameObject.layer == otherGameObjectLayer)
+                Physics.IgnoreCollision(other.collider, GetComponent<Collider>());
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            var otherGameObjectLayer = other.gameObject.layer;
+            if (otherGameObjectLayer == layerMask || gameObject.layer == otherGameObjectLayer)
+                Physics.IgnoreCollision(other.collider, GetComponent<Collider>());
+        }
+
+        private void OnCollisionStay(Collision other)
+        {
+            var otherGameObjectLayer = other.gameObject.layer;
+            if (otherGameObjectLayer == layerMask || gameObject.layer == otherGameObjectLayer)
+                Physics.IgnoreCollision(other.collider, GetComponent<Collider>());
+        }
     }
 }

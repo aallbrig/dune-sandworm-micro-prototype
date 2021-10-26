@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Behaviors.SandwormMovement
@@ -18,9 +17,12 @@ namespace Behaviors.SandwormMovement
         private void LateUpdate()
         {
             selfRigidbody.AddForce(force * Time.deltaTime, forceMode);
+            var transformRotation = transform.rotation;
+            transformRotation.x = 0;
+            transform.rotation = transformRotation;
         }
 
-        [SerializeField] public Vector3 TravelDirection => selfRigidbody.velocity.normalized;
+        public Vector3 TravelDirection => selfRigidbody.velocity.normalized;
 
         public void Move(Vector3 directionOfTravel) => force = directionOfTravel * speed;
     }

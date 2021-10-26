@@ -63,10 +63,10 @@ namespace Tests.PlayMode
             [ValueSource(nameof(DirectionVectors))] Vector3 desiredDirection
         )
         {
-            var otherGameObject = new GameObject();
             var gameObject = new GameObject();
-            var testHarness = otherGameObject.AddComponent<SandwormMoverTestHarness>();
+            var testHarness = gameObject.AddComponent<SandwormMoverTestHarness>();
             var sut = gameObject.AddComponent<Sandworm>();
+            var otherGameObject = new GameObject();
             sut.sandwormHead = otherGameObject;
             sut.bodyParent = otherGameObject.transform;
             yield return null;

@@ -89,6 +89,7 @@ namespace Behaviors
             var direction = perspectiveForward * swipe.VectorNormalized.y + perspectiveRight * swipe.VectorNormalized.x;
             direction.y = 0;
             Debug.Log($"Travel direction: {direction}");
+
             _sandworm.Move(direction);
         }
     }
