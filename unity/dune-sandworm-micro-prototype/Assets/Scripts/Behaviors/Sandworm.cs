@@ -2,29 +2,37 @@ using UnityEngine;
 
 namespace Behaviors
 {
-    public class Sandworm : MonoBehaviour
+    public interface IMoveSandworms
     {
-        [SerializeField] private Transform bodyParent;
+        Vector3 TravelDirection { get; }
+        void Move(Vector3 directionOfTravel);
+    }
+
+    public class Sandworm : MonoBehaviour, IMoveSandworms
+    {
+        public Vector3 TravelDirection => _sandwormMover.TravelDirection;
+        public GameObject sandwormHead;
+        public GameObject[] sandwormBody;
+        public Transform bodyParent;
+
         [SerializeField] private GameObject bodyPrefab;
         [SerializeField] private int desiredBodySegmentCount = 10;
         [SerializeField] private float distanceBetween = 3f;
-        [SerializeField] private Vector3 travelDirection = Vector3.zero;
         [SerializeField] private int layerMask = 7;
-        [SerializeField] private SandwormHead sandwormHead;
+        private IMoveSandworms _sandwormMover;
 
-        public Vector3 TravelDirection => sandwormHead.TravelDirection;
-
-        private void Start() => GenerateBody();
-
-        public void UpdateTravelDirection(Vector3 newTravelVector)
+        private void Start()
         {
-            sandwormHead.Accelerate(newTravelVector);
+            _sandwormMover = sandwormHead.GetComponent<IMoveSandworms>();
+            GenerateBody();
         }
 
         [ContextMenu("Generate Body Segments")]
-        public void GenerateBody() =>
-            // DeleteAllBodySegments();
+        public void GenerateBody()
+        {
+            DeleteAllBodySegments();
             SpawnBodySegments();
+        }
 
         private void DeleteAllBodySegments()
         {
@@ -35,6 +43,7 @@ namespace Behaviors
         private void SpawnBodySegments()
         {
             if (bodyPrefab == null || bodyParent == null) return;
+            sandwormBody = new GameObject[desiredBodySegmentCount];
 
             var instantiated = 0;
             while (instantiated < desiredBodySegmentCount)
@@ -42,12 +51,13 @@ namespace Behaviors
                 var bodySegment = Instantiate(bodyPrefab, bodyParent);
                 bodySegment.name = $"Sandworm Body Segment {instantiated}";
                 bodySegment.transform.position = bodyParent.position + Vector3.back * distanceBetween * (instantiated + 1);
-                bodySegment.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                bodySegment.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 bodySegment.GetComponent<SandwormBody>().layerMask = layerMask;
 
+                sandwormBody[instantiated] = bodySegment;
                 instantiated++;
             }
         }
+
+        public void Move(Vector3 directionOfTravel) => _sandwormMover.Move(directionOfTravel);
     }
 }

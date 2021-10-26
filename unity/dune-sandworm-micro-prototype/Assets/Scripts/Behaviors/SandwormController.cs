@@ -7,8 +7,8 @@ namespace Behaviors
     public class Interaction
     {
         public static Interaction Of(Vector2 raw) => new Interaction(raw);
-        public Vector2 Position { get; private set; }
-        public float Timing { get; private set; }
+        public Vector2 Position { get; }
+        public float Timing { get; }
 
         private Interaction(Vector2 raw)
         {
@@ -53,12 +53,14 @@ namespace Behaviors
         private Sandworm _sandworm;
         private Interaction _interactionStart;
         private Interaction _interactionEnd;
+        private Transform _cameraTransform;
 
         private void Awake() => _controls = new PlayerControls();
 
         private void Start()
         {
             _sandworm = GetComponent<Sandworm>();
+            _cameraTransform = Camera.main.transform;
 
             _controls.Player.Interact.started += OnInteractStarted;
             _controls.Player.Interact.canceled += OnInteractStopped;
@@ -81,10 +83,13 @@ namespace Behaviors
             var swipe = Swipe.Of(_interactionStart, _interactionEnd);
             Debug.Log($"Swipe: {swipe}");
 
-            // TODO: one more transformation is required -- direction of swipe != direction of movement by itself
+            var perspectiveForward = _cameraTransform.forward.normalized;
+            var perspectiveRight = _cameraTransform.transform.right.normalized;
 
-            var travelDirection = new Vector3(swipe.VectorNormalized.x, 0, swipe.VectorNormalized.y);
-            _sandworm.UpdateTravelDirection(travelDirection);
+            var direction = perspectiveForward * swipe.VectorNormalized.y + perspectiveRight * swipe.VectorNormalized.x;
+            direction.y = 0;
+            Debug.Log($"Travel direction: {direction}");
+            _sandworm.Move(direction);
         }
     }
 }
