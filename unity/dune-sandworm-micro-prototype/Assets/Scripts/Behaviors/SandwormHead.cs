@@ -27,16 +27,22 @@ namespace Behaviors
     }
 
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Collider))]
     public class SandwormHead : MonoBehaviour
     {
 
+        public static event Action<SandwormMeal> SandwormHasEaten;
+        public Vector3 TravelDirection => selfRigidbody.velocity.normalized;
+
+        [SerializeField] private float speed = 10f;
         [SerializeField] private int layer = 6;
         [SerializeField] private int layerMask = 7;
-        [SerializeField] private Collider _collider;
+        [SerializeField] private Collider selfCollider;
+        [SerializeField] private Rigidbody selfRigidbody;
 
         // Sandworm eats when its mouth collides with things
         private void Awake() => gameObject.layer = layer;
-        private void Start() => _collider = GetComponent<Collider>();
+        private void Start() => selfCollider = GetComponent<Collider>();
 
         private void OnCollisionEnter(Collision other) => HandleCollisions(other);
         private void OnCollisionExit(Collision other) => HandleCollisions(other);
@@ -44,8 +50,6 @@ namespace Behaviors
         private void OnTriggerEnter(Collider other) => HandleTrigger(other);
         private void OnTriggerExit(Collider other) => HandleTrigger(other);
         private void OnTriggerStay(Collider other) => HandleTrigger(other);
-
-        public static event Action<SandwormMeal> SandwormHasEaten;
 
         public void Eat(GameObject maybeEdibleObject)
         {
@@ -58,13 +62,19 @@ namespace Behaviors
             }
         }
 
+        public void Accelerate(Vector3 vector)
+        {
+            selfRigidbody.AddForce(vector * speed, ForceMode.Acceleration);
+        }
+
         private void HandleCollisions(Collision other)
         {
             var otherGameObjectLayer = other.gameObject.layer;
             if (otherGameObjectLayer == layerMask || gameObject.layer == otherGameObjectLayer)
-                Physics.IgnoreCollision(other.collider, _collider);
+                Physics.IgnoreCollision(other.collider, selfCollider);
             else Eat(other.gameObject);
         }
+
         private void HandleTrigger(Collider other) => Eat(other.gameObject);
     }
 }

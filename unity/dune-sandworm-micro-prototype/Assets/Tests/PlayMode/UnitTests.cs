@@ -55,10 +55,10 @@ namespace Tests.PlayMode
             var sut = new GameObject().AddComponent<Sandworm>();
             yield return null;
 
-            sut.UpdateDirectionOfTravel(desiredDirection);
+            sut.UpdateTravelDirection(desiredDirection);
             yield return null;
 
-            Assert.IsTrue(sut.DirectionOfTravel == desiredDirection);
+            Assert.IsTrue(sut.TravelDirection == desiredDirection);
         }
     }
 }

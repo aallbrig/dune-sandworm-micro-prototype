@@ -78,8 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerMask: 7
-  layer: 6
-  rigidbody: {fileID: 0}
+  selfRigidbody: {fileID: 127655559379901487}
 --- !u!136 &4999813647215582042
 CapsuleCollider:
   m_ObjectHideFlags: 0

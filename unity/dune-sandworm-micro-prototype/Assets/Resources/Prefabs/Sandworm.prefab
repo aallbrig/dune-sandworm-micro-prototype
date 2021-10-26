@@ -48,9 +48,9 @@ MonoBehaviour:
   bodyPrefab: {fileID: 8382306953487711554, guid: fa257f022c90f43ca96d6ab6430529c7, type: 3}
   desiredBodySegmentCount: 10
   distanceBetween: 6
-  layer: 6
+  travelDirection: {x: 0, y: 0, z: 0}
   layerMask: 7
-  directionOfTravel: {x: 0, y: 0, z: 0}
+  sandwormHead: {fileID: 8573272298449937011}
 --- !u!1001 &39310127169759695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,3 +113,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 314198459432005856, guid: e9fcfa2de867d451bad1f7f9fc9e9847, type: 3}
   m_PrefabInstance: {fileID: 39310127169759695}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8573272298449937011 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8534824738152336316, guid: e9fcfa2de867d451bad1f7f9fc9e9847, type: 3}
+  m_PrefabInstance: {fileID: 39310127169759695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92e2445e96f4d8e819e99f9805565ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

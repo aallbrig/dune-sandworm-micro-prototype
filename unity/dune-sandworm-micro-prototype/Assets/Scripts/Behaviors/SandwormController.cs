@@ -77,8 +77,14 @@ namespace Behaviors
         {
             _interactionEnd = Interaction.Of(_controls.Player.Position.ReadValue<Vector2>());
             Debug.Log($"End: {_interactionEnd}");
+
             var swipe = Swipe.Of(_interactionStart, _interactionEnd);
             Debug.Log($"Swipe: {swipe}");
+
+            // TODO: one more transformation is required -- direction of swipe != direction of movement by itself
+
+            var travelDirection = new Vector3(swipe.VectorNormalized.x, 0, swipe.VectorNormalized.y);
+            _sandworm.UpdateTravelDirection(travelDirection);
         }
     }
 }

@@ -8,14 +8,18 @@ namespace Behaviors
         [SerializeField] private GameObject bodyPrefab;
         [SerializeField] private int desiredBodySegmentCount = 10;
         [SerializeField] private float distanceBetween = 3f;
-        [SerializeField] private Vector3 directionOfTravel = Vector3.zero;
+        [SerializeField] private Vector3 travelDirection = Vector3.zero;
         [SerializeField] private int layerMask = 7;
+        [SerializeField] private SandwormHead sandwormHead;
 
-        public Vector3 DirectionOfTravel => directionOfTravel;
+        public Vector3 TravelDirection => sandwormHead.TravelDirection;
 
         private void Start() => GenerateBody();
 
-        public void UpdateDirectionOfTravel(Vector3 newVector) => directionOfTravel = newVector;
+        public void UpdateTravelDirection(Vector3 newTravelVector)
+        {
+            sandwormHead.Accelerate(newTravelVector);
+        }
 
         [ContextMenu("Generate Body Segments")]
         public void GenerateBody() =>

@@ -76,9 +76,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92e2445e96f4d8e819e99f9805565ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   layer: 6
   layerMask: 7
-  _collider: {fileID: 314198459432005857}
+  selfCollider: {fileID: 314198459432005857}
+  selfRigidbody: {fileID: 6113565898559342723}
 --- !u!1 &314198459960591887
 GameObject:
   m_ObjectHideFlags: 0
