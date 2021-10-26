@@ -39,6 +39,7 @@ namespace Tests.PlayMode
         public static string[] ExpectedGameElements = {
             "Desert Sands",
             "Ground",
+            "Player Spawner",
             "Sandworm (Player)"
         };
 
@@ -50,17 +51,6 @@ namespace Tests.PlayMode
             yield return LoadTargetScene(TargetScene);
 
             var sut = FindGameObjectByName(gameObjectName);
-
-            Assert.NotNull(sut);
-        }
-
-        // [UnityTest]
-        private IEnumerator ASandwormIsOnScreen()
-        {
-            yield return LoadTargetScene(TargetScene);
-            var scene = SceneManager.GetActiveScene();
-
-            var sut = FindGameObjectInRoot(scene, (gameObject => gameObject.name == "Sandworm (Player)"))[0];
 
             Assert.NotNull(sut);
         }

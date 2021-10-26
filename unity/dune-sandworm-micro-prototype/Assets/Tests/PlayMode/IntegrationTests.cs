@@ -66,11 +66,17 @@ namespace Tests.PlayMode
         {
             var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
             var testEdibleObject = new GameObject();
-            testEdibleObject.AddComponent<BoxCollider>();
+            var collider = testEdibleObject.AddComponent<BoxCollider>();
+            var rigidBody = testEdibleObject.AddComponent<Rigidbody>();
+            rigidBody.useGravity = false;
             var testHarness = testEdibleObject.AddComponent<EdibleObjectTestHarness>();
             testEdibleObject.transform.position = sut.transform.position;
+            yield return new WaitForFixedUpdate();
+            testEdibleObject.transform.position = sut.transform.position;
+            yield return new WaitForFixedUpdate();
+            testEdibleObject.transform.position = sut.transform.position;
+            yield return new WaitForFixedUpdate();
 
-            yield return new WaitForFixedUpdate(); // Allow collision to be detected
 
             Assert.IsFalse(testHarness.canBeEaten);
             Assert.IsTrue(testHarness.hasBeenEaten);

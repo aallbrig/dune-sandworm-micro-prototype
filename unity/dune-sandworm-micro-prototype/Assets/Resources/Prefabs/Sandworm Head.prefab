@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 314198459432005857}
   - component: {fileID: 6113565898559342723}
   - component: {fileID: 8534824738152336316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sandworm Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!54 &6113565898559342723
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92e2445e96f4d8e819e99f9805565ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 6
+  layerMask: 7
+  collider: {fileID: 314198459432005857}
 --- !u!1 &314198459960591887
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,8 +89,7 @@ GameObject:
   - component: {fileID: 314198459960591884}
   - component: {fileID: 314198459960591875}
   - component: {fileID: 314198459960591874}
-  - component: {fileID: 314198459960591885}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,20 +159,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &314198459960591885
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314198459960591887}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &314198460126807533
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +170,7 @@ GameObject:
   - component: {fileID: 314198460126807522}
   - component: {fileID: 314198460126807520}
   - component: {fileID: 314198460126807523}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,8 +251,7 @@ GameObject:
   - component: {fileID: 314198460587936071}
   - component: {fileID: 314198460587936090}
   - component: {fileID: 314198460587936069}
-  - component: {fileID: 314198460587936068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,20 +321,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &314198460587936068
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314198460587936070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &314198460906770752
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,8 +332,7 @@ GameObject:
   - component: {fileID: 314198460906770753}
   - component: {fileID: 314198460906770756}
   - component: {fileID: 314198460906770759}
-  - component: {fileID: 314198460906770758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Teeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,20 +402,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &314198460906770758
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314198460906770752}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &314198461194258231
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314198461194258228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: models
   m_TagString: Untagged
   m_Icon: {fileID: 0}
