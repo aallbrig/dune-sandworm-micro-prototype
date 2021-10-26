@@ -22,7 +22,7 @@ namespace Generated
             ""actions"": [
                 {
                     ""name"": ""Interact"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""66f55a86-ded4-4145-9761-55ec68a4ac5c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

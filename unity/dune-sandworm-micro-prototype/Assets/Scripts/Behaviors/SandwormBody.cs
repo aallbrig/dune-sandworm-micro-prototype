@@ -5,9 +5,8 @@ namespace Behaviors
     public class SandwormBody : MonoBehaviour
     {
         public int layerMask = 7;
-        [SerializeField] private int layer = 6;
-        [SerializeField] private Rigidbody rigidbody;
-        private void Start() => rigidbody = GetComponent<Rigidbody>();
+        [SerializeField] private Rigidbody selfRigidbody;
+        private void Start() => selfRigidbody = GetComponent<Rigidbody>();
 
         private void OnCollisionEnter(Collision other)
         {

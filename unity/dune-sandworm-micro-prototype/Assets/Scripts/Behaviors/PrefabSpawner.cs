@@ -1,15 +1,18 @@
+using System;
 using UnityEngine;
 
 namespace Behaviors
 {
     public class PrefabSpawner : MonoBehaviour, ICanSpawn
     {
+        public event Action<GameObject> PrefabSpawned;
+
         [SerializeField] private int count = 1;
         [SerializeField] private GameObject prefab;
         [SerializeField] private GameObject targetPlane;
         [SerializeField] private int layerNumber;
         [SerializeField] private SpawnStrategy strategy = SpawnStrategy.Zero;
-        [SerializeField] private string name = "";
+        [SerializeField] private string desiredName = "";
         [SerializeField] private Vector3 optionalOffset = Vector3.zero;
 
         public void Spawn() => SpawnPrefabs();
@@ -21,7 +24,7 @@ namespace Behaviors
             while (instantiated < count)
             {
                 var gameObjectInstance = Instantiate(prefab);
-                gameObjectInstance.name = name == "" ? gameObjectInstance.name : name;
+                gameObjectInstance.name = desiredName == "" ? gameObjectInstance.name : desiredName;
                 gameObjectInstance.layer = layerNumber;
 
                 switch (strategy)
@@ -38,6 +41,7 @@ namespace Behaviors
                         break;
                 }
 
+                PrefabSpawned?.Invoke(gameObjectInstance);
                 instantiated++;
             }
         }

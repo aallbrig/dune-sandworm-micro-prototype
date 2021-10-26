@@ -21,6 +21,7 @@ namespace Behaviors
         public void GenerateBody() =>
             // DeleteAllBodySegments();
             SpawnBodySegments();
+
         private void DeleteAllBodySegments()
         {
             foreach (Transform child in bodyParent)

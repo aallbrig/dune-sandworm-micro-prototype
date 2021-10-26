@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: 6
   layerMask: 7
-  collider: {fileID: 314198459432005857}
+  _collider: {fileID: 314198459432005857}
 --- !u!1 &314198459960591887
 GameObject:
   m_ObjectHideFlags: 0

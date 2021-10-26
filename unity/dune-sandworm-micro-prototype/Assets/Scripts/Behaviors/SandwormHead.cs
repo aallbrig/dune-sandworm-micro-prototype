@@ -32,11 +32,11 @@ namespace Behaviors
 
         [SerializeField] private int layer = 6;
         [SerializeField] private int layerMask = 7;
-        [SerializeField] private Collider collider;
+        [SerializeField] private Collider _collider;
 
         // Sandworm eats when its mouth collides with things
         private void Awake() => gameObject.layer = layer;
-        private void Start() => collider = GetComponent<Collider>();
+        private void Start() => _collider = GetComponent<Collider>();
 
         private void OnCollisionEnter(Collision other) => HandleCollisions(other);
         private void OnCollisionExit(Collision other) => HandleCollisions(other);
@@ -62,7 +62,7 @@ namespace Behaviors
         {
             var otherGameObjectLayer = other.gameObject.layer;
             if (otherGameObjectLayer == layerMask || gameObject.layer == otherGameObjectLayer)
-                Physics.IgnoreCollision(other.collider, collider);
+                Physics.IgnoreCollision(other.collider, _collider);
             else Eat(other.gameObject);
         }
         private void HandleTrigger(Collider other) => Eat(other.gameObject);
