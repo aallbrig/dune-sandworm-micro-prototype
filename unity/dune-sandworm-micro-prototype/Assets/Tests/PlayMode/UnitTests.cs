@@ -2,6 +2,7 @@ using System.Collections;
 using Behaviors;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
@@ -65,7 +66,13 @@ namespace Tests.PlayMode
         {
             var gameObject = new GameObject();
             var testHarness = gameObject.AddComponent<SandwormMoverTestHarness>();
+            var boneRenderer = gameObject.AddComponent<BoneRenderer>();
+            var rig = gameObject.AddComponent<Rig>();
+            var rigBuilder = gameObject.AddComponent<RigBuilder>();
             var sut = gameObject.AddComponent<Sandworm>();
+            sut.boneRenderer = boneRenderer;
+            sut.rig = rig;
+            sut.rigBuilder = rigBuilder;
             var otherGameObject = new GameObject();
             sut.sandwormHead = otherGameObject;
             sut.bodyParent = otherGameObject.transform;

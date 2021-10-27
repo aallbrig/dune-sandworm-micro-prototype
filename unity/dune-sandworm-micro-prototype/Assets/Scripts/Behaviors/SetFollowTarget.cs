@@ -20,7 +20,12 @@ namespace Behaviors
 
         private void UpdateFollowTarget(GameObject spawnedGameObject)
         {
-            virtualCamera.Follow = spawnedGameObject.transform;
+            var sandworm = spawnedGameObject.GetComponent<Sandworm>();
+
+            if (sandworm)
+                virtualCamera.Follow = sandworm.sandwormHead.transform;
+            else
+                virtualCamera.Follow = spawnedGameObject.transform;
         }
     }
 }

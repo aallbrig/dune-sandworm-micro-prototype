@@ -13,7 +13,7 @@ namespace Behaviors.SandwormMovement
         public void Move(Vector3 directionOfTravel) => TravelDirection = directionOfTravel;
         private void Start()
         {
-            selfTransform = transform;
+            selfTransform = selfTransform ? selfTransform : transform;
         }
 
         private void Update()
@@ -21,7 +21,7 @@ namespace Behaviors.SandwormMovement
             if (TravelDirection == Vector3.zero) return;
 
             selfTransform.rotation = Quaternion.Slerp(selfTransform.rotation, Quaternion.LookRotation(TravelDirection), rotateSpeed * Time.deltaTime);
-            transform.position += selfTransform.rotation * Vector3.forward * Time.deltaTime * speed;
+            selfTransform.position += selfTransform.rotation * Vector3.forward * Time.deltaTime * speed;
         }
     }
 }
