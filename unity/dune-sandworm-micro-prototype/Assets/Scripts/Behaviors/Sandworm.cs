@@ -50,7 +50,7 @@ namespace Behaviors
         {
             ClearPossiblePreviousBodySegments();
             SpawnBodySegments();
-            AddBodySegmentsToBoneRenderer();
+            // AddBodySegmentsToBoneRenderer();
             AddBodySegmentsToRig();
         }
 
@@ -107,11 +107,6 @@ namespace Behaviors
                 if (Application.isEditor) DestroyImmediate(dampedTransform);
                 else Destroy(dampedTransform);
             }
-
-            boneRenderer.transforms = new []
-            {
-                sandwormHead.transform
-            };
         }
 
         private void SpawnBodySegments()
@@ -141,7 +136,7 @@ namespace Behaviors
             foreach (var sandwormBodySegment in sandwormBody)
                 newTransforms[index++] = sandwormBodySegment.transform;
 
-            boneRenderer.transforms = boneRenderer.transforms.Concat(newTransforms).ToArray();
+            // boneRenderer.transforms = boneRenderer.transforms.Concat(newTransforms).ToArray();
         }
 
         public void Move(Vector3 directionOfTravel) => _sandwormMover.Move(directionOfTravel);
