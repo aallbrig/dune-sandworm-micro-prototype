@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6387111627238031123}
   - component: {fileID: 6387111627238031120}
-  - component: {fileID: 8376978884628319844}
+  - component: {fileID: 4256710643736914597}
   m_Layer: 6
   m_Name: Sandworm
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MonoBehaviour:
   desiredBodySegmentCount: 10
   distanceBetween: 6
   layerMask: 7
---- !u!114 &8376978884628319844
+--- !u!114 &4256710643736914597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda3c8fe2b614f15b318d4a025f7dfcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  rotateSpeed: 6
+  speed: 8
+  rotateSpeed: 1
   selfTransform: {fileID: 6387111627238031123}
 --- !u!1 &6719722006787463050
 GameObject:
