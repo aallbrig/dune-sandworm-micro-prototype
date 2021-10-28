@@ -7,6 +7,8 @@ namespace Behaviors
         [SerializeField] private int amount = 10;
         [SerializeField] private float points = 1f;
         [SerializeField] private float eatDelay = 1f;
+        [SerializeField] private ParticleSystem particleSystem;
+
         private float _lastEatenTime;
 
         public int Amount => amount;
@@ -19,10 +21,13 @@ namespace Behaviors
 
         public void BeEaten()
         {
+            if (!CanBeEaten()) return;
+
             _lastEatenTime = Time.time;
             amount -= 1;
             if (amount == 0)
                 Destroy(gameObject);
+            else if (particleSystem != null) particleSystem.Play();
         }
 
         public Score Score => Score.Of(points);
