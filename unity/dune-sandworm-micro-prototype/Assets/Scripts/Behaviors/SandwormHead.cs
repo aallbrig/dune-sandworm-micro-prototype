@@ -29,6 +29,7 @@ namespace Behaviors
     public class SandwormHead : MonoBehaviour
     {
         public static event Action<SandwormMeal> SandwormHasEaten;
+        public static void Eat(SandwormMeal sandwormMeal) => SandwormHasEaten?.Invoke(sandwormMeal);
 
         // Sandworm eats when its mouth collides with things
 

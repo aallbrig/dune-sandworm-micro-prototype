@@ -70,4 +70,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# TextMesh pro assets. I sincerely hope this doesn't jack up import of the project
+TextMesh Pro
+TextMesh Pro.meta
 
