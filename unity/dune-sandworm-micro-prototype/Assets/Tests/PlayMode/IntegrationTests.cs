@@ -1,6 +1,7 @@
 using System.Collections;
 using Behaviors;
 using NUnit.Framework;
+using Tests.PlayMode.Utilities;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Object = UnityEngine.Object;
@@ -14,7 +15,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator SitsOnTopOfGround()
         {
-            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation), TestLocation.Next());
             yield return null;
 
             Assert.NotNull(sut.transform.position.y > 0);
@@ -23,7 +24,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator HasAScore()
         {
-            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation), TestLocation.Next());
             yield return null;
 
             var scoreComponent = sut.GetComponent<IHaveAScore>();
@@ -34,7 +35,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator CanBeEaten()
         {
-            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation), TestLocation.Next());
             yield return null;
             var spice = sut.GetComponent<Spice>();
             var spiceAmount = spice.Amount;
@@ -64,7 +65,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator CanEatEdibleObjectsViaCollision()
         {
-            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation), TestLocation.Next());
             var testEdibleObject = new GameObject();
             var collider = testEdibleObject.AddComponent<BoxCollider>();
             var rigidBody = testEdibleObject.AddComponent<Rigidbody>();
@@ -89,7 +90,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator Exists()
         {
-            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation));
+            var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation), TestLocation.Next());
             yield return null;
 
             Assert.NotNull(sut);

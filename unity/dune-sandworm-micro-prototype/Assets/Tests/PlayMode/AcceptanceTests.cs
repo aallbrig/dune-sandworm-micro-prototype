@@ -27,6 +27,7 @@ namespace Tests.PlayMode
 
             return foundGameObjects;
         }
+
         private GameObject FindGameObjectByName(string name) => GameObject.Find(name);
 
         private IEnumerator LoadTargetScene(string targetSceneName)

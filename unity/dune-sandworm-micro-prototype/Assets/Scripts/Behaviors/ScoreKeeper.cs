@@ -53,6 +53,12 @@ namespace Behaviors
             SandwormHead.SandwormHasEaten += CalculateNewScore;
         }
 
+        private void OnDisable()
+        {
+            NewScoreWasCalculated -= RenderNewScore;
+            SandwormHead.SandwormHasEaten -= CalculateNewScore;
+        }
+
         private void RenderNewScore(Score newScore) => scoreRenderer.RenderScore(ScoreFormatter.Of(_score).ToString());
 
         private void Start()

@@ -6,7 +6,7 @@
         "UnityEditor.TestRunner",
         "Scripts",
         "Unity.Animation.Rigging",
-        "Unity.TextMeshPro"
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
