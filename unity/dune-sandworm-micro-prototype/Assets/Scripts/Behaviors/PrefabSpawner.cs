@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Behaviors
 {
@@ -9,11 +10,14 @@ namespace Behaviors
 
         [SerializeField] private int count = 1;
         [SerializeField] private GameObject prefab;
-        [SerializeField] private GameObject targetPlane;
         [SerializeField] private int layerNumber;
         [SerializeField] private SpawnStrategy strategy = SpawnStrategy.Zero;
         [SerializeField] private string desiredName = "";
         [SerializeField] private Vector3 optionalOffset = Vector3.zero;
+        [SerializeField] private float minX = 0;
+        [SerializeField] private float maxX = 0;
+        [SerializeField] private float minZ = 0;
+        [SerializeField] private float maxZ = 0;
 
         public void Spawn() => SpawnPrefabs();
 
@@ -33,8 +37,7 @@ namespace Behaviors
                         gameObjectInstance.transform.position = Vector3.zero;
                         break;
                     case SpawnStrategy.Random:
-                        // TODO: Implement
-                        gameObjectInstance.transform.position = targetPlane.transform.position;
+                        gameObjectInstance.transform.position = new Vector3(Random.Range(minX, maxX), 0, Random.Range(minZ, maxZ)) + optionalOffset;
                         break;
                     case SpawnStrategy.Offset:
                         gameObjectInstance.transform.position = Vector3.zero + optionalOffset;

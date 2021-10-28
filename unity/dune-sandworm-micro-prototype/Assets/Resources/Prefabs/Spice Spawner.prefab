@@ -1,31 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3940795698193636657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2586085557466910740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa5259d7c12463ab2fccf30b70d73f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6074026874693140674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2586085557466910740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf72fdac3b04909886f6b4ab4db7967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
---- !u!1001 &116096810177406548
+--- !u!1001 &2402030282859730398
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -34,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2485963302895318592, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: m_Name
-      value: Player Spawner
+      value: Spice Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 4000049439322000406, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: m_RootOrder
@@ -46,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000049439322000406, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000049439322000406, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -81,33 +56,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
-      propertyPath: name
-      value: Sandworm (Player)
+      propertyPath: maxX
+      value: 245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
+      propertyPath: maxZ
+      value: 245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
+      propertyPath: minX
+      value: -245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
+      propertyPath: minZ
+      value: -245
       objectReference: {fileID: 0}
     - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: count
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 6387111627238031122, guid: 6f4ff864decdb4ba29eed33d956322a0, type: 3}
+      objectReference: {fileID: 4777327731810102199, guid: b19815d92f6cb4f9d909fffe02abeebb, type: 3}
     - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: strategy
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: desiredName
-      value: Sandworm (Player)
+      value: Spice
       objectReference: {fileID: 0}
     - target: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
       propertyPath: layerNumber
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
---- !u!1 &2586085557466910740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2485963302895318592, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
-  m_PrefabInstance: {fileID: 116096810177406548}
-  m_PrefabAsset: {fileID: 0}

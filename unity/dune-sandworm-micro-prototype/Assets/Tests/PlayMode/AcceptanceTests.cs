@@ -32,15 +32,22 @@ namespace Tests.PlayMode
 
         private IEnumerator LoadTargetScene(string targetSceneName)
         {
+            var currentScene = SceneManager.GetActiveScene();
             var sceneAsync = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Single);
 
             while (sceneAsync.isDone == false) yield return null;
+            if (currentScene.name == targetSceneName)
+            {
+                var sceneAsyncUnload = SceneManager.UnloadSceneAsync(currentScene);
+                while (sceneAsyncUnload.isDone == false) yield return null;
+            }
         }
 
         public static string[] ExpectedGameElements = {
             "Desert Sands",
             "Ground",
             "Player Spawner",
+            "Spice Spawner",
             "Sandworm (Player)",
             "Score Keeper"
         };

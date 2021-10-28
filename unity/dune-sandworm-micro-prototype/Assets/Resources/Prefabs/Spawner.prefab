@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000049439322000406}
   - component: {fileID: 203515733075112500}
   - component: {fileID: 8623826930397686267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +56,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c91a9ecde524331a0ee71f8b6a90777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 1
+  count: 0
   prefab: {fileID: 0}
-  targetPlane: {fileID: 0}
+  layerNumber: 0
+  strategy: 0
+  desiredName: 
+  optionalOffset: {x: 0, y: 0, z: 0}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0

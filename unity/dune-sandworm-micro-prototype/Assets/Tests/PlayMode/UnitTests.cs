@@ -108,7 +108,7 @@ namespace Tests.PlayMode
             var spy = gameObject.AddComponent<SpyScoreRender>();
             var sut = gameObject.AddComponent<ScoreKeeper>();
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
 
             Assert.AreEqual(ScoreFormatter.Of(Score.Of(0)).ToString(), spy.renderedScore);
         }
@@ -123,7 +123,7 @@ namespace Tests.PlayMode
             spyEdibleObject.Score = targetScore;
             var sut = gameObject.AddComponent<ScoreKeeper>();
             var sandwormMeal = SandwormMeal.Of(new GameObject(), spyEdibleObject.gameObject);
-            yield return new WaitForEndOfFrame(); // Allow unity lifecycle methods to be called
+            yield return null; // Allow unity lifecycle methods to be called
 
             SandwormHead.Eat(sandwormMeal);
 
