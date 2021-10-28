@@ -62,20 +62,30 @@ namespace Behaviors
             _sandworm = GetComponent<Sandworm>();
             _cameraTransform = Camera.main.transform;
 
-            _controls.Player.Interact.started += OnInteractStarted;
-            _controls.Player.Interact.canceled += OnInteractStopped;
+            _controls.Player.Interact.started += OnTouchInteractionStarted;
+            _controls.Player.Interact.canceled += OnTouchInteractionStopped;
+            _controls.Player.Move.performed += OnMove;
+        }
+
+        private void OnMove(InputAction.CallbackContext context)
+        {
+            var direction = InputDirectionFromCameraPerspective(context.ReadValue<Vector2>());
+            direction.y = 0;
+            Debug.Log($"Travel direction: {direction}");
+
+            MoveSandworm(direction);
         }
 
         private void OnEnable() => _controls.Enable();
         private void OnDisable() => _controls.Disable();
 
-        private void OnInteractStarted(InputAction.CallbackContext context)
+        private void OnTouchInteractionStarted(InputAction.CallbackContext context)
         {
             _interactionStart = Interaction.Of(_controls.Player.Position.ReadValue<Vector2>());
             Debug.Log($"End: {_interactionStart}");
         }
 
-        private void OnInteractStopped(InputAction.CallbackContext context)
+        private void OnTouchInteractionStopped(InputAction.CallbackContext context)
         {
             _interactionEnd = Interaction.Of(_controls.Player.Position.ReadValue<Vector2>());
             Debug.Log($"End: {_interactionEnd}");
@@ -83,14 +93,20 @@ namespace Behaviors
             var swipe = Swipe.Of(_interactionStart, _interactionEnd);
             Debug.Log($"Swipe: {swipe}");
 
-            var perspectiveForward = _cameraTransform.forward.normalized;
-            var perspectiveRight = _cameraTransform.transform.right.normalized;
-
-            var direction = perspectiveForward * swipe.VectorNormalized.y + perspectiveRight * swipe.VectorNormalized.x;
+            var direction = InputDirectionFromCameraPerspective(new Vector2(swipe.VectorNormalized.x, swipe.VectorNormalized.y));
             direction.y = 0;
             Debug.Log($"Travel direction: {direction}");
 
-            _sandworm.Move(direction);
+            MoveSandworm(direction);
         }
+
+        private Vector3 InputDirectionFromCameraPerspective(Vector2 input)
+        {
+            var perspectiveForward = _cameraTransform.forward.normalized;
+            var perspectiveRight = _cameraTransform.transform.right.normalized;
+
+            return perspectiveForward * input.y + perspectiveRight * input.x;
+        }
+        private void MoveSandworm(Vector3 direction) => _sandworm.Move(direction);
     }
 }
