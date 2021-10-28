@@ -40,7 +40,8 @@ namespace Tests.PlayMode
             "Desert Sands",
             "Ground",
             "Player Spawner",
-            "Sandworm (Player)"
+            "Sandworm (Player)",
+            "Score Keeper"
         };
 
         [UnityTest]
