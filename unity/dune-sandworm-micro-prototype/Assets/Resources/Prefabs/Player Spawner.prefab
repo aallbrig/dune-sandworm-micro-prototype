@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa5259d7c12463ab2fccf30b70d73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6074026874693140674
+--- !u!114 &7876081994995552059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25,6 +25,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 0}
+  prefabSpawner: {fileID: 8516739596080582575}
 --- !u!1001 &116096810177406548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,3 +112,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2485963302895318592, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
   m_PrefabInstance: {fileID: 116096810177406548}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8516739596080582575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8623826930397686267, guid: c394a1202bd1e4cd5821342c9bb4e9f4, type: 3}
+  m_PrefabInstance: {fileID: 116096810177406548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586085557466910740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c91a9ecde524331a0ee71f8b6a90777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
