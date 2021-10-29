@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sandwormHead: {fileID: 349004299712076076}
+  config: {fileID: 11400000, guid: 2910d11a27df7409383aae512a40d77c, type: 2}
   desiredBodySegmentCount: 10
   layerMask: 7
 --- !u!114 &4256710643736914597

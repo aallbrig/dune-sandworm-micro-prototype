@@ -1,8 +1,8 @@
 using System.Collections;
 using Behaviors;
 using NUnit.Framework;
+using ScriptableObjects;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
@@ -11,8 +11,13 @@ namespace Tests.PlayMode
     {
 
         public Vector3 TravelDirection { get; private set; }
+        public SandwormConfig Config { get; private set; }
 
-        public void Move(Vector3 directionOfTravel) => TravelDirection = directionOfTravel;
+        public void Move(SandwormConfig config, Vector3 directionOfTravel)
+        {
+            Config = config;
+            TravelDirection = directionOfTravel;
+        }
     }
     
     public class FakeSandwormBodyGenerator: MonoBehaviour, IGenerateSandwormBody
@@ -20,7 +25,7 @@ namespace Tests.PlayMode
         public void Generate(int length) {}
     }
 
-    public class EdibleObjectTestHarness: MonoBehaviour, IAmEdible
+    public class SpyEdibleObject: MonoBehaviour, IAmEdible
     {
         public bool canBeEaten = true;
         public bool hasBeenEaten = false;
@@ -43,7 +48,7 @@ namespace Tests.PlayMode
             var sut = gameObject.AddComponent<SandwormHead>();
             var testEdibleObject = new GameObject();
             var head = sut.GetComponent<SandwormHead>();
-            var testHarness = testEdibleObject.AddComponent<EdibleObjectTestHarness>();
+            var testHarness = testEdibleObject.AddComponent<SpyEdibleObject>();
             yield return null;
 
             head.Eat(testEdibleObject);
@@ -73,8 +78,8 @@ namespace Tests.PlayMode
             gameObject.AddComponent<FakeSandwormBodyGenerator>();
             var spy = gameObject.AddComponent<SpySandwormMover>();
             var sut = gameObject.AddComponent<Sandworm>();
-            var otherGameObject = new GameObject();
-            sut.sandwormHead = otherGameObject;
+            sut.config = ScriptableObject.CreateInstance<SandwormConfiguration>();
+            sut.sandwormHead = new GameObject();
             yield return null;
 
             sut.Move(desiredDirection);

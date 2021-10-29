@@ -4,13 +4,16 @@ namespace Behaviors.SandwormMovement
 {
     public class TransformMovement : MonoBehaviour, IMoveSandworms
     {
-
         public Vector3 TravelDirection { get; private set; }
-        [SerializeField] private float speed = 100f;
-        [SerializeField] private float rotateSpeed = 6f;
         [SerializeField] private Transform targetTransform;
+        private SandwormConfig _config;
 
-        public void Move(Vector3 directionOfTravel) => TravelDirection = directionOfTravel;
+        public void Move(SandwormConfig config, Vector3 directionOfTravel)
+        {
+            _config = config;
+            TravelDirection = directionOfTravel;
+        }
+
         private void Start()
         {
             targetTransform = targetTransform ? targetTransform : transform;
@@ -20,8 +23,13 @@ namespace Behaviors.SandwormMovement
         {
             if (TravelDirection == Vector3.zero) return;
 
-            targetTransform.rotation = Quaternion.Slerp(targetTransform.rotation, Quaternion.LookRotation(TravelDirection), rotateSpeed * Time.deltaTime);
-            targetTransform.position += targetTransform.rotation * Vector3.forward * Time.deltaTime * speed;
+            targetTransform.rotation = Quaternion.Slerp(
+                targetTransform.rotation,
+                Quaternion.LookRotation(TravelDirection),
+                _config.RotationSpeed * Time.deltaTime
+            );
+
+            targetTransform.position += targetTransform.rotation * Vector3.forward * Time.deltaTime * _config.MoveSpeed;
         }
     }
 }

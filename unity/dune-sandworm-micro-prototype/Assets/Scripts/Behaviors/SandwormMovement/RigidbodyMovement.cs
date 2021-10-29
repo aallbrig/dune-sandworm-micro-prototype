@@ -24,6 +24,6 @@ namespace Behaviors.SandwormMovement
 
         public Vector3 TravelDirection => selfRigidbody.velocity.normalized;
 
-        public void Move(Vector3 directionOfTravel) => force = directionOfTravel * speed;
+        public void Move(SandwormConfig config, Vector3 directionOfTravel) => force = directionOfTravel * speed;
     }
 }

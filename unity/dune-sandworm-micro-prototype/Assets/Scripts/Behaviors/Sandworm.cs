@@ -1,11 +1,30 @@
+using System;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Behaviors
 {
+    [Serializable]
+    public class SandwormConfig
+    {
+        
+        private SandwormConfig(float moveSpeed, float rotationSpeed)
+        {
+            MoveSpeed = moveSpeed;
+            RotationSpeed = rotationSpeed;
+        }
+
+        public float MoveSpeed { get; private set; }
+
+        public float RotationSpeed { get; private set; }
+
+        public static SandwormConfig Of(float moveSpeed, float rotationSpeed) => new SandwormConfig(moveSpeed, rotationSpeed);
+    }
+
     public interface IMoveSandworms
     {
         Vector3 TravelDirection { get; }
-        void Move(Vector3 directionOfTravel);
+        void Move(SandwormConfig config, Vector3 directionOfTravel);
     }
 
     public interface IGenerateSandwormBody
@@ -17,6 +36,7 @@ namespace Behaviors
     {
         public Vector3 TravelDirection => _sandwormMover.TravelDirection;
         public GameObject sandwormHead;
+        public SandwormConfiguration config;
 
         [SerializeField] private int desiredBodySegmentCount = 8;
         [SerializeField] private int layerMask = 7;
@@ -37,7 +57,7 @@ namespace Behaviors
             _bodyGenerator.Generate(desiredBodySegmentCount);
         }
 
-        public void Move(Vector3 directionOfTravel) => _sandwormMover.Move(directionOfTravel);
+        public void Move(Vector3 directionOfTravel) => _sandwormMover.Move(config.Get(), directionOfTravel);
 
         private void OnCollisionEnter(Collision other)
         {
