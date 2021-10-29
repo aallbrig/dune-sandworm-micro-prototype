@@ -23,9 +23,10 @@ namespace Behaviors
             var sandworm = spawnedGameObject.GetComponent<Sandworm>();
 
             if (sandworm)
+            {
                 virtualCamera.Follow = sandworm.sandwormHead.transform;
-            else
-                virtualCamera.Follow = spawnedGameObject.transform;
+                virtualCamera.LookAt = sandworm.sandwormHead.transform;
+            }
         }
     }
 }

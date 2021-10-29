@@ -7,7 +7,7 @@ using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class SandwormMoverTestHarness : MonoBehaviour, IMoveSandworms
+    public class SpySandwormMover : MonoBehaviour, IMoveSandworms
     {
 
         public Vector3 TravelDirection { get; private set; }
@@ -15,6 +15,11 @@ namespace Tests.PlayMode
         public void Move(Vector3 directionOfTravel) => TravelDirection = directionOfTravel;
     }
     
+    public class FakeSandwormBodyGenerator: MonoBehaviour, IGenerateSandwormBody
+    {
+        public void Generate(int length) {}
+    }
+
     public class EdibleObjectTestHarness: MonoBehaviour, IAmEdible
     {
         public bool canBeEaten = true;
@@ -64,25 +69,18 @@ namespace Tests.PlayMode
             [ValueSource(nameof(DirectionVectors))] Vector3 desiredDirection
         )
         {
-            // TODO: "Listen to the tests" the lengthy setup is telling me something about Sandworm MB
             var gameObject = new GameObject();
-            var testHarness = gameObject.AddComponent<SandwormMoverTestHarness>();
-            var boneRenderer = gameObject.AddComponent<BoneRenderer>();
-            var rig = gameObject.AddComponent<Rig>();
-            var rigBuilder = gameObject.AddComponent<RigBuilder>();
+            gameObject.AddComponent<FakeSandwormBodyGenerator>();
+            var spy = gameObject.AddComponent<SpySandwormMover>();
             var sut = gameObject.AddComponent<Sandworm>();
-            sut.boneRenderer = boneRenderer;
-            sut.rig = rig;
-            sut.rigBuilder = rigBuilder;
             var otherGameObject = new GameObject();
             sut.sandwormHead = otherGameObject;
-            sut.bodyParent = otherGameObject.transform;
             yield return null;
 
             sut.Move(desiredDirection);
             yield return null;
 
-            Assert.IsTrue(sut.TravelDirection == testHarness.TravelDirection);
+            Assert.IsTrue(sut.TravelDirection == spy.TravelDirection);
         }
     }
 

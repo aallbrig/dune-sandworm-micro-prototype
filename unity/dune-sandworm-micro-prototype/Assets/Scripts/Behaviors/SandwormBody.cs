@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace Behaviors
 {
-    public class SandwormBody : MonoBehaviour
+    public class SandwormBody : MonoBehaviour, IAmEdible, IHaveAScore
     {
         public int layerMask = 7;
+        [SerializeField] private ParticleSystem onBeEatenParticles;
 
         private void OnCollisionEnter(Collision other)
         {
@@ -26,5 +27,13 @@ namespace Behaviors
             if (otherGameObjectLayer == layerMask || gameObject.layer == otherGameObjectLayer)
                 Physics.IgnoreCollision(other.collider, GetComponent<Collider>());
         }
+
+        public bool CanBeEaten() => true;
+        public void BeEaten()
+        {
+            if (onBeEatenParticles) onBeEatenParticles.Play();
+        }
+
+        public Score Score => Score.Of(-10);
     }
 }

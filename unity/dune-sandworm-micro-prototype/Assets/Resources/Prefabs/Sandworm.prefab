@@ -120,11 +120,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6387111627238031123}
-  - component: {fileID: 6387111627238031120}
-  - component: {fileID: 4256710643736914597}
   - component: {fileID: 3385695126577612494}
   - component: {fileID: 6099990249078210674}
   - component: {fileID: 1414572092586561492}
+  - component: {fileID: 6387111627238031120}
+  - component: {fileID: 4256710643736914597}
+  - component: {fileID: 8208416410932014630}
   m_Layer: 6
   m_Name: Sandworm
   m_TagString: Untagged
@@ -148,44 +149,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6387111627238031120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6387111627238031122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b24772dc9343fd9724255d5c841345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sandwormHead: {fileID: 349004299712076076}
-  sandwormBody: []
-  bodyParent: {fileID: 349004299712076079}
-  bodySegmentTag: sandworm body segment
-  boneRenderer: {fileID: 1414572092586561492}
-  rig: {fileID: 7579770480318812323}
-  rigBuilder: {fileID: 6099990249078210674}
-  bodyPrefab: {fileID: 8382306953487711554, guid: fa257f022c90f43ca96d6ab6430529c7, type: 3}
-  desiredBodySegmentCount: 10
-  distanceBetween: 2
-  layerMask: 7
---- !u!114 &4256710643736914597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6387111627238031122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda3c8fe2b614f15b318d4a025f7dfcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  rotateSpeed: 1
-  selfTransform: {fileID: 6387111627238031123}
 --- !u!95 &3385695126577612494
 Animator:
   serializedVersion: 3
@@ -249,6 +212,54 @@ MonoBehaviour:
   boneColor: {r: 0, g: 0, b: 1, a: 0.5}
   m_Transforms:
   - {fileID: 349004299712076079}
+--- !u!114 &6387111627238031120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387111627238031122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b24772dc9343fd9724255d5c841345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sandwormHead: {fileID: 349004299712076076}
+  desiredBodySegmentCount: 10
+  layerMask: 7
+--- !u!114 &4256710643736914597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387111627238031122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda3c8fe2b614f15b318d4a025f7dfcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 16
+  rotateSpeed: 2
+  targetTransform: {fileID: 0}
+--- !u!114 &8208416410932014630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387111627238031122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfba49413ff4401afcfdc8e1430505d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 349004299712076079}
+  rig: {fileID: 7579770480318812323}
+  rigBuilder: {fileID: 6099990249078210674}
+  bodyPrefab: {fileID: 8382306953487711554, guid: fa257f022c90f43ca96d6ab6430529c7, type: 3}
+  bodySegmentTag: sandworm body segment
+  distanceBetween: 2
 --- !u!1001 &39310127169759695
 PrefabInstance:
   m_ObjectHideFlags: 0

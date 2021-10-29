@@ -133,8 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 13617464}
   - component: {fileID: 13617467}
-  - component: {fileID: 13617465}
   - component: {fileID: 13617466}
+  - component: {fileID: 13617465}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -165,19 +165,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 13617463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+  m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 20, z: -30}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
-  m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0
-  m_RollDamping: 0
-  m_AngularDamping: 0
+  Damping: {x: 20, y: 0.5, z: 0.3}
+  ShoulderOffset: {x: 0, y: 0, z: -10}
+  VerticalArmLength: 10
+  CameraSide: 1
+  CameraDistance: 2
+  CameraCollisionFilter:
+    serializedVersion: 2
+    m_Bits: 0
+  IgnoreTag: 
+  CameraRadius: 0.2
 --- !u!114 &13617466
 MonoBehaviour:
   m_ObjectHideFlags: 3
