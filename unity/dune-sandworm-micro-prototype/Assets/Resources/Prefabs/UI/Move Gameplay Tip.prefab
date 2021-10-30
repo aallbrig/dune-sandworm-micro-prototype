@@ -81,7 +81,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Move using swipe, WASD or mouse drag
+  m_Text: To move use tap, click, joystick or WASD.
 --- !u!114 &1081480081869062261
 MonoBehaviour:
   m_ObjectHideFlags: 0
