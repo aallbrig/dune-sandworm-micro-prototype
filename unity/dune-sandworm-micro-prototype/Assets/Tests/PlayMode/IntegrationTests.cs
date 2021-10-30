@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Tests.PlayMode.Utilities;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Object = UnityEngine.Object;
 
 namespace Tests.PlayMode
 {
@@ -50,17 +49,6 @@ namespace Tests.PlayMode
     public class SandwormHeadPrefab
     {
         private const string PrefabLocation = "Prefabs/Sandworm Head";
-        private class SpyEdibleObject: MonoBehaviour, IAmEdible
-        {
-            public bool canBeEaten = true;
-            public bool hasBeenEaten = false;
-            public bool CanBeEaten() => canBeEaten;
-            public void BeEaten()
-            {
-                canBeEaten = false;
-                hasBeenEaten = true;
-            } 
-        }
 
         [UnityTest]
         public IEnumerator CanEatEdibleObjectsViaCollision()
@@ -72,10 +60,22 @@ namespace Tests.PlayMode
             var spy = testEdibleObject.AddComponent<SpyEdibleObject>();
             var sut = Object.Instantiate(Resources.Load<GameObject>(PrefabLocation), TestLocation.Next());
 
-            testEdibleObject.transform.position =sut.GetComponent<Collider>().bounds.center;
+            testEdibleObject.transform.position = sut.GetComponent<Collider>().bounds.center;
             yield return new WaitForFixedUpdate();
 
             Assert.IsTrue(spy.hasBeenEaten);
+        }
+
+        private class SpyEdibleObject : MonoBehaviour, IAmEdible
+        {
+            public bool canBeEaten = true;
+            public bool hasBeenEaten;
+            public bool CanBeEaten() => canBeEaten;
+            public void BeEaten()
+            {
+                canBeEaten = false;
+                hasBeenEaten = true;
+            }
         }
     }
 

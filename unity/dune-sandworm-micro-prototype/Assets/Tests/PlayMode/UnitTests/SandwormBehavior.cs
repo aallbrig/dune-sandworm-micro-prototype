@@ -20,7 +20,8 @@ namespace Tests.PlayMode
 
         [UnityTest]
         public IEnumerator SandwormCanHaveDirectionSet(
-            [ValueSource(nameof(DirectionVectors))] Vector3 desiredDirection
+            [ValueSource(nameof(DirectionVectors))]
+            Vector3 desiredDirection
         )
         {
             var gameObject = new GameObject();

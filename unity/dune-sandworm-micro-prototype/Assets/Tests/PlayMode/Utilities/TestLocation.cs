@@ -4,7 +4,7 @@ namespace Tests.PlayMode.Utilities
 {
     public class TestLocation
     {
-        private static int _index = 0;
+        private static int _index;
         private static readonly float offset = 100; // in unity units
         public static Transform Next()
         {

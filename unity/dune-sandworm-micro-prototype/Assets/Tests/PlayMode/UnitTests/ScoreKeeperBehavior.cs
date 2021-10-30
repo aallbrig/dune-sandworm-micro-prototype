@@ -8,18 +8,6 @@ namespace Tests.PlayMode
 {
     public class ScoreKeeperBehavior
     {
-        private class SpyScoreRender: MonoBehaviour, IRenderScore
-        {
-            public string renderedScore = "";
-            public void RenderScore(string scoreText) => renderedScore = scoreText;
-        }
-        private class SpyEdibleObject: MonoBehaviour, IAmEdible, IHaveAScore
-        {
-            public Score Score { get; set; }
-            private bool _hasBeenEaten;
-            public bool CanBeEaten() => _hasBeenEaten != true;
-            public void BeEaten() => _hasBeenEaten = true;
-        }
 
         [UnityTest]
         public IEnumerator ScoreKeeperRendersInitialScore()
@@ -48,6 +36,21 @@ namespace Tests.PlayMode
             SandwormHead.Eat(sandwormMeal);
 
             Assert.AreEqual(ScoreFormatter.Of(targetScore).ToString(), spyScoreRender.renderedScore);
+        }
+
+        private class SpyScoreRender : MonoBehaviour, IRenderScore
+        {
+            public string renderedScore = "";
+            public void RenderScore(string scoreText) => renderedScore = scoreText;
+        }
+
+        private class SpyEdibleObject : MonoBehaviour, IAmEdible, IHaveAScore
+        {
+            private bool _hasBeenEaten;
+            public bool CanBeEaten() => _hasBeenEaten != true;
+            public void BeEaten() => _hasBeenEaten = true;
+
+            public Score Score { get; set; }
         }
     }
 }
