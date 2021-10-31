@@ -13,6 +13,7 @@ namespace Editor
             if (target == BuildTarget.WebGL)
                 WebGLBuildPostProcess(target, pathToBuiltProject);
         }
+
         private static void WebGLBuildPostProcess(BuildTarget target, string pathToBuiltProject)
         {
             var buildFolderPath = Path.Combine(pathToBuiltProject, "Build");
