@@ -9704,7 +9704,8 @@ MonoBehaviour:
   points: 100
   eatDelay: 1
   onBeEatenParticles: {fileID: 5839922033944290923}
-  meshRenderer: {fileID: 7599908009885623368}
+  renderer: {fileID: 7599908009885623368}
+  hitMaterial: {fileID: 2100000, guid: 833afb760104046bf8b5e1afa863a4bc, type: 2}
   flashDelay: 0.2
   flashCount: 1
   impulseSource: {fileID: 6396519661352566460}

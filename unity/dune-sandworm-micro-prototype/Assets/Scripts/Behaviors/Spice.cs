@@ -10,11 +10,12 @@ namespace Behaviors
         [SerializeField] private float points = 1f;
         [SerializeField] private float eatDelay = 1f;
         [SerializeField] private ParticleSystem onBeEatenParticles;
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private Renderer renderer;
+        [SerializeField] private Material hitMaterial;
         [SerializeField] private float flashDelay = 0.16f;
         [SerializeField] private float flashCount = 2;
         [SerializeField] private CinemachineImpulseSource impulseSource;
-        private Color _originalColor;
+        private Material _originalMaterial;
 
         private IEnumerator _flashing;
 
@@ -26,13 +27,13 @@ namespace Behaviors
         {
             // Instantly edible
             _lastEatenTime = Time.time - eatDelay;
-            meshRenderer = meshRenderer ? meshRenderer : GetComponent<MeshRenderer>();
+            renderer = renderer ? renderer : GetComponent<Renderer>();
             impulseSource = impulseSource ? impulseSource : GetComponent<CinemachineImpulseSource>();
             
-            if (!meshRenderer) Debug.LogError("Material is required for this behavior");
+            if (!renderer) Debug.LogError("Material is required for this behavior");
             if (!impulseSource) Debug.LogError("Cinemachine impulse source is required for this behavior");
 
-            _originalColor = meshRenderer.material.color;
+            _originalMaterial = renderer.material;
         }
 
         public bool CanBeEaten() => amount > 0 && Time.time - _lastEatenTime > eatDelay;
@@ -45,19 +46,19 @@ namespace Behaviors
             if (amount == 0)
                 Destroy(gameObject, flashDelay * 2);
             _lastEatenTime = Time.time;
-            _flashing = FlashingBehavior(_originalColor);
+            _flashing = FlashingBehavior(_originalMaterial);
             StartCoroutine(_flashing);
             if (onBeEatenParticles) onBeEatenParticles.Play();
             if (impulseSource) impulseSource.GenerateImpulse();
         }
 
-        private IEnumerator FlashingBehavior(Color originalColor)
+        private IEnumerator FlashingBehavior(Material originalMaterial)
         {
             for (int i = 0; i < flashCount; i++)
             {
-                meshRenderer.material.color = Color.white;
+                renderer.material = hitMaterial;
                 yield return new WaitForSeconds(flashDelay);
-                meshRenderer.material.color = originalColor;
+                renderer.material = originalMaterial;
                 yield return new WaitForSeconds(flashDelay);
             }
         }
