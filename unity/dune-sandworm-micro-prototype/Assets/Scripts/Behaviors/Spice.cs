@@ -14,6 +14,7 @@ namespace Behaviors
         [SerializeField] private float flashDelay = 0.16f;
         [SerializeField] private float flashCount = 2;
         [SerializeField] private CinemachineImpulseSource impulseSource;
+        private Color _originalColor;
 
         private IEnumerator _flashing;
 
@@ -30,6 +31,8 @@ namespace Behaviors
             
             if (!meshRenderer) Debug.LogError("Material is required for this behavior");
             if (!impulseSource) Debug.LogError("Cinemachine impulse source is required for this behavior");
+
+            _originalColor = meshRenderer.material.color;
         }
 
         public bool CanBeEaten() => amount > 0 && Time.time - _lastEatenTime > eatDelay;
@@ -38,17 +41,15 @@ namespace Behaviors
         {
             if (!CanBeEaten()) return;
 
+            amount -= 1;
+            if (amount == 0)
+                Destroy(gameObject, flashDelay * 2);
             _lastEatenTime = Time.time;
-            meshRenderer.material.color = MakeMaterialLighter(meshRenderer.material.color);
-            _flashing = FlashingBehavior(meshRenderer.material.color);
+            _flashing = FlashingBehavior(_originalColor);
             StartCoroutine(_flashing);
             if (onBeEatenParticles) onBeEatenParticles.Play();
             if (impulseSource) impulseSource.GenerateImpulse();
-            amount -= 1;
-            if (amount == 0)
-                Destroy(gameObject);
         }
-        private Color MakeMaterialLighter(Color color) => Color.Lerp(color, Color.white, .1f);
 
         private IEnumerator FlashingBehavior(Color originalColor)
         {
@@ -57,6 +58,7 @@ namespace Behaviors
                 meshRenderer.material.color = Color.white;
                 yield return new WaitForSeconds(flashDelay);
                 meshRenderer.material.color = originalColor;
+                yield return new WaitForSeconds(flashDelay);
             }
         }
 

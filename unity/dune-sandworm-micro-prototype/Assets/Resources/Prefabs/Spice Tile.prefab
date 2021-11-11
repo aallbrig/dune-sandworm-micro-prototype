@@ -9700,14 +9700,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9283973422141ada0c04075d796826d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 10
-  points: 10
+  amount: 3
+  points: 100
   eatDelay: 1
   onBeEatenParticles: {fileID: 5839922033944290923}
   meshRenderer: {fileID: 7599908009885623368}
   flashDelay: 0.2
-  flashCount: 3
-  impulseSource: {fileID: 0}
+  flashCount: 1
+  impulseSource: {fileID: 6396519661352566460}
 --- !u!54 &3551610197381116965
 Rigidbody:
   m_ObjectHideFlags: 0
