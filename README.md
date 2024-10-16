@@ -3,6 +3,6 @@ I just watched Dune 2021 and was wildly impressed. Since I'm creating micro game
 
 Helpful video, for creating a worm player controlled object: https://youtu.be/LVSmp0zW8pY
 
-[Play the Game Here](https://aallbrig.github.io/dune-sandworm-micro-prototype/WebGL/index.html)
+[Play the Game Here](https://sandwormofdune.com)
 
 ![QR code with link to play the video game](img/play-game-qr-code.png)
